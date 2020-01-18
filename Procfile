@@ -1,0 +1,1 @@
+web: gunicorn shit_talk.wsgi:application --preload --workers 1 --log-file -
