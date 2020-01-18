@@ -82,7 +82,7 @@ class JWTAuthentication(authentication.BaseAuthentication):
             raise exceptions.AuthenticationFailed(msg)
 
         try:
-            chatroom = Chatroom.objects.get(key=payload['id'])
+            chatroom = Chatroom.objects.get(id=payload['id'])
         except Chatroom.DoesNotExist:
             msg = 'No chatroom matching this token was found.'
             raise exceptions.AuthenticationFailed(msg)
