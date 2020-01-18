@@ -6,6 +6,7 @@ from django.utils import timezone
 
 class Chatroom(models.Model):
     name = models.CharField(max_length=30)
+    salt = models.CharField(max_length=30)
     key = models.CharField(max_length=10)
     datetime_created = models.DateTimeField(default=timezone.now)
     is_active = models.BooleanField(default=True)

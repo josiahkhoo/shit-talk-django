@@ -23,10 +23,8 @@ class ChatroomView(APIView):
     def get(self, request, totp):
         chatrooms = Chatroom.objects.all()
         for chatroom in chatrooms:
-            key = chatroom.key
-            encoded_key = base64.b32encode(key.encode("UTF-8"))
-            print(encoded_key)
-            validator = TOTP(encoded_key)
+            salt = chatroom.salt
+            validator = TOTP(salt)
             if validator.verify(totp):
                 data = ChatroomSerializer(chatroom).data
                 token = jwt.encode(data, SECRET_KEY)
